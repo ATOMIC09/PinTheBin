@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { IoMdArrowRoundBack } from 'react-icons/io';
 import axios from "../httpAxios";
+import { url } from "../config";
 
 export const RegisterBox = () => {
   const [buttonContent, setButtonContent] = useState({ message: '', bgColor: ''});
@@ -27,7 +28,7 @@ export const RegisterBox = () => {
     try {
       // Send registration request to your backend API using Axios
       console.log('Data:', formData);
-      const response = await axios.post('https://pinthebin-backend.vercel.app/register', formData);
+      const response = await axios.post(`${url}/register`, formData);
       console.log('Response:', response);
 
       if (response.status === 201) {

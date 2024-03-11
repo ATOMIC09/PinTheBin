@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import axios from "../../httpAxios";
 import { IoMdArrowRoundBack } from 'react-icons/io';
 import Image from 'next/image'
+import { url } from "../../config";
 
 const ReportBin = ({ params }) => {
   // const [isButtonClicked, setIsButtonClicked] = useState(false);
@@ -45,7 +46,7 @@ const ReportBin = ({ params }) => {
         return;
       }
       
-      const response = await axios.post('https://pinthebin-backend.vercel.app/report', {
+      const response = await axios.post(`${url}/report`, {
          // Replace with actual user ID or username
         description: reportContent,
         category: reportCategory,

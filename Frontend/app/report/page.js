@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import { IoMdArrowRoundBack } from 'react-icons/io';
 import Image from 'next/image'
 import axios from "../httpAxios";
+import { url } from "../config";
 
 export default function AppReport() {
   const [headerName, setHeaderName] = useState('');
@@ -44,7 +45,7 @@ export default function AppReport() {
         return;
       }
 
-      const response = await axios.post('https://pinthebin-backend.vercel.app/appReport', {
+      const response = await axios.post(`${url}/appReport`, {
          // Replace with actual user ID or username
         description: reportContent,
         category: reportCategory,

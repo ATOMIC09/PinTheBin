@@ -3,6 +3,7 @@ import { GoogleMap, InfoWindow, Marker } from "@react-google-maps/api";
 import axios from "../../httpAxios";
 import { BinDetail } from "./bindetail";
 import { useRouter } from 'next/navigation'
+import { url } from "../../config";
 
 export const Map = ({ center, onMarkerClick }) => {
   const router = useRouter();
@@ -27,7 +28,7 @@ export const Map = ({ center, onMarkerClick }) => {
   };
 
   const fetchBinData = (markerId) => {
-    axios.get(`https://pinthebin-backend.vercel.app/bin/${markerId}`,
+    axios.get(`${url}/bin/${markerId}`,
       {
         headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
       })
@@ -51,7 +52,7 @@ export const Map = ({ center, onMarkerClick }) => {
     if (localStorage.getItem('token') == null) {
       router.push('/')
     }
-    axios.get("https://pinthebin-backend.vercel.app/bin",
+    axios.get(`${url}/bin`,
       {
         headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
       })

@@ -7,6 +7,7 @@ import React, { useState, useEffect } from "react";
 import '../components/style.css';
 import Link from 'next/link';
 import Image from 'next/image'
+import { url } from "../../config";
 
 const formatDate = (timestamp) => {
     const options = {
@@ -29,7 +30,7 @@ export const BinDetail = ({ onClose, markerId, setIsBinDetailVisible }) => {
     useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await fetch(`https://pinthebin-backend.vercel.app/bin/${markerId}`,{
+            const response = await fetch(`${url}/bin/${markerId}`, {
                 headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') }
               });
             const data = await response.json();

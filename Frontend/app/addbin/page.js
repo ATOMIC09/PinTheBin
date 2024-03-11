@@ -8,6 +8,7 @@ import { getCurrentLocation } from '../home/utils/getcurrentlocation';
 import Image from 'next/image'
 import axios from "../httpAxios";
 import { useRouter } from 'next/navigation';
+import { url } from "../config";
 
 export default function Addbin() {
   const router = useRouter();
@@ -24,8 +25,6 @@ export default function Addbin() {
   });
   const [errorMessage, setErrorMessage] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
-
-  let url = 'https://pinthebin-backend.vercel.app/';
   
   const handleButtonStateChange = (newButtonStates) => {
     setButtonStates(newButtonStates);
@@ -86,7 +85,7 @@ export default function Addbin() {
       description: name,
     });
 
-    axios.post(url + 'bin', {
+    axios.post(`${url}/bin`, {
       location: locationName,
       lat: location.lat,
       lng: location.lng,
@@ -152,7 +151,7 @@ export default function Addbin() {
     formData.append('fileName', fileName);
     formData.append('binId', binId);
 
-    axios.post(`${url}upload`, formData, {
+    axios.post(`${url}/upload`, formData, {
         headers: {
             'Authorization': 'Bearer ' + localStorage.getItem('token'),
             'Content-Type': 'multipart/form-data',

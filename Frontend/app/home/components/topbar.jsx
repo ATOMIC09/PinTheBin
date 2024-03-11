@@ -3,6 +3,7 @@ import { MdMenu } from "react-icons/md";
 import "./style.css";
 import { SearchBar } from '../components/searchbar';
 import axios from "../../httpAxios";
+import { url } from "../../config";
 
 export const Topbar = ({ isSidebarOpen, toggleSidebar, onLocationClick }) => {
   const [isSearchBarVisible, setIsSearchBarVisible] = useState(false);
@@ -15,7 +16,7 @@ export const Topbar = ({ isSidebarOpen, toggleSidebar, onLocationClick }) => {
     setIsSearchBarVisible(inputValue.trim().length > 0);
  
     // Make an API call when the input changes
-    axios.post('https://pinthebin-backend.vercel.app/bin/search', { 
+    axios.post(`${url}/bin/search`, {
       location: inputValue, 
       description: inputValue 
     },{ headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') } })

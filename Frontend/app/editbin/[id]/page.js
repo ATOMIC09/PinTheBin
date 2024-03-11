@@ -12,6 +12,7 @@ import Image from 'next/image';
 import './components/style.css';
 import axios from "../../httpAxios";
 import { useRouter } from 'next/navigation';
+import { url } from "../../config";
 
 export default function EditBin({ params }) {
   const [isButtonClicked, setIsButtonClicked] = useState(false);
@@ -24,17 +25,12 @@ export default function EditBin({ params }) {
   const [toggleButtonStates, setToggleButtonStates] = useState({});
   const [isBinNotFoundVisible, setIsBinNotFoundVisible] = useState(false);
 
-
-  let url = 'https://pinthebin-backend.vercel.app/';
-  
-
-
   const handleCancelDelete = () => {
     setIsConfirmDeleteVisible(false);
   };
 
   const editMarkerOnMap = (locationName, name, location, binTypes) => {
-    axios.patch(url + 'bin', {
+    axios.patch(`${url}/bin`, {
       location: locationName,
       lat: location.lat,
       lng: location.lng,
@@ -54,7 +50,7 @@ export default function EditBin({ params }) {
     setIsConfirmDeleteVisible(true);
   };
   const confirmDelete = () => {
-    axios.delete(`${url}bin/${params.id}`,{ headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') } })
+    axios.delete(`${url}/bin/${params.id}`,{ headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') } })
       .then((response) => {
         console.log(response);
         setIsConfirmDeleteVisible(false);
@@ -83,7 +79,7 @@ export default function EditBin({ params }) {
   useEffect(() => {
     // Fetch bin data when component mounts
     console.log('Fetching bin data');
-    axios.get(`${url}bin/${params.id}`,{ headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') } })
+    axios.get(`${url}/bin/${params.id}`,{ headers: { 'Authorization': 'Bearer ' + localStorage.getItem('token') } })
       .then((response) => {
         const binData = response.data.response[0];
         setLocationName(binData.location);

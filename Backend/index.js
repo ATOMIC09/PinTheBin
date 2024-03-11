@@ -18,10 +18,10 @@ const secretKey = process.env.secretKey;
 
 
 app.use(cors({
-    origin: 'https://pinthebin.vercel.app', // use your actual domain name (or localhost), using * is not recommended
-    methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Origin', 'X-Requested-With', 'Accept', 'x-client-key', 'x-client-token', 'x-client-secret', 'Authorization'],
-    credentials: true
+    // origin: 'https://pinthebin.vercel.app', // use your actual domain name (or localhost), using * is not recommended
+    // methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH', 'HEAD', 'OPTIONS'],
+    // allowedHeaders: ['Content-Type', 'Origin', 'X-Requested-With', 'Accept', 'x-client-key', 'x-client-token', 'x-client-secret', 'Authorization'],
+    // credentials: true
 }))
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -625,7 +625,7 @@ app.post('/appReport', (req, res) => {
 
 
 app.listen(port, () => {
-    console.log(`server running`)
+    console.log(`server running on port ${port}`)
 })
 
 module.exports = app;
